@@ -1,0 +1,226 @@
+/*LOGIN SCREEN*/
+.login-screen{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 10% 0;
+}
+
+.login-screen h2{
+    font-size: 5em;
+    color: purple;
+    text-transform: capitalize;
+    font-weight: 800;
+}
+
+.login-screen form{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+}
+
+.login-screen form input{
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    border: 1px solid gray;
+    outline: none;
+    width: 50%;
+}
+
+.login-screen form input:focus{
+    outline: solid 1px purple;
+}
+
+.login-screen form button{
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(109, 221, 165);
+    font-weight: bold;
+    cursor: pointer;
+    transition: all ease .5s;
+}
+
+.login-screen form button:hover{
+    background-color: mediumseagreen;
+    transform: scale(105%);
+}
+/*-----------------------------------------------*/
+
+/* CONTENT BODY - HEADER */
+.content-body .header{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5%;
+    background-color: purple;
+    color: white;
+    align-items: center;
+}
+
+.content-body .header .user{
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-body .header .user button{
+    background-color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: purple;
+    transition: all ease .5s;
+}
+
+.content-body .header .user button:hover{
+    background-color: rgb(201, 210, 223);
+}
+
+
+/* CONTENT BODY - VIDEO GRID */
+.grid-container{
+    display: flex;
+    justify-content: center;
+    margin: 5%;
+}
+
+.videos-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2em;
+}
+
+.videos-grid .video-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5%;
+    cursor: pointer;
+}
+
+@media (max-width:768px){
+
+    .videos-grid{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2em;
+        margin: 0 5%;
+    }
+
+    .videos-grid .video-card img{
+        width: 320px;
+    }
+}
+
+/* CONTENT BODY - VIDEO */
+.video-container{
+    display: flex;
+    margin: 5%;
+    gap: 20px;
+}
+
+.video-container .lista{
+    width: 50%;
+    height: 100%;
+    background-color: aqua;
+    padding: 5%;
+}
+
+@media (max-width:768px){
+    .video-container{
+        position: relative;
+    }
+    
+    .video-container .lista{
+        width: 100%;
+        padding: 5%;
+        position: absolute;
+        bottom: -100%;
+    }
+}
+
+.video-container .video{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.video .close-vid{
+    position: absolute;
+    top: -30px;
+    left: 0;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: purple;
+    font-weight: bold;
+    font-size: 1rem;
+    text-transform: uppercase;
+    transition: all ease .5s;
+}
+
+.video .close-vid:hover{
+    color: black;
+}
+
+.video .video-title{
+    font-size: 2em;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.video video{
+    width: 100%;
+}
+
+
+/* COMMENTS */
+.comments-container{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    margin: 5% 0;
+}
+
+.comments-container .input-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1em;
+    margin-top: 100px;
+}
+
+.comments-container .input-container textarea{
+    padding: 1rem;
+    border-radius: 5px;
+    border: 1px solid gray;
+    outline: none;
+    width: 50%;
+}
+
+.comments-container .input-container button{
+    padding: 1rem 2rem;
+    background-color: purple;
+    border: none;
+    color: white;
+    width: 300px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.comment{
+    margin: 5%;
+}
