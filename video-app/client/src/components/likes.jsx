@@ -1,0 +1,75 @@
+import like1 from '/public/like1.svg';
+import like2 from '/public/like2.svg';
+import dislike1 from '/public/dislike1.svg';
+import dislike2 from '/public/dislike2.svg';
+import { useState } from 'react';
+
+export default function Likes(){
+
+    const [totalLikes, setTotalLikes] = useState(0);
+    const [totalDislikes, setTotalDislikes] = useState(0);
+
+    const [likesCount, setLikesCount] = useState(0);
+    const [disLikesCount, setDisLikesCount] = useState(0);
+    
+    const [clickLike, setClickLike] = useState(false);
+    const [clickDis, setClickDis] = useState(false);
+
+    function handleLike(){
+
+        if(!clickLike){
+
+            setClickLike(true);
+            setLikesCount(l=> l = 1);
+            setDisLikesCount(0);
+            setClickDis(false)
+
+            setTotalLikes(t=> t += 1);
+            setTotalDislikes(t=> t - disLikesCount);
+        }else{
+
+            setClickLike(false);
+            setLikesCount(0);
+
+            setTotalLikes(t=> t - 1);
+        }
+
+    }
+
+    function handleDislike(){
+
+        if(!clickDis){
+
+            setClickDis(true);
+            setDisLikesCount(d=> d = 1);
+            setLikesCount(0);
+            setClickLike(false)
+
+            setTotalDislikes(t=> t += 1);
+            setTotalLikes(t=> t - likesCount);
+
+        }else{
+
+            setClickDis(false);
+            setDisLikesCount(0);
+
+            setTotalDislikes(t=> t - disLikesCount);
+        }
+
+    }
+
+
+    return <div className='likes-container'>
+
+        <div className='row'>
+            <img src={clickLike ? like2 : like1} alt="like icon" width={40} onClick={handleLike} />
+            <span>{totalLikes}</span>
+            
+        </div>
+
+        <div className='row'>
+            <img src={clickDis ? dislike2 : dislike1} alt="dislike icon" width={40} onClick={handleDislike}  />
+            <span>{totalDislikes}</span>
+        </div>
+    </div>
+}

@@ -129,7 +129,7 @@
 
 .video-container .lista{
     width: 50%;
-    height: 100%;
+    height: 100vh;
     background-color: aqua;
     padding: 5%;
 }
@@ -184,6 +184,28 @@
     width: 100%;
 }
 
+.video-container .video .video-title{
+    display: flex;
+    align-items: center;
+}
+
+.video-container .video .video-title h3{
+    font-size: 30px;
+}
+
+@media (max-width:768px){
+
+    .video-container .video .video-title{
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .video-container .video .video-title h3{
+        font-size: 25px;
+        margin: 20px 0;
+    }
+}
+
 
 /* COMMENTS */
 .comments-container{
@@ -223,4 +245,49 @@
 
 .comment{
     margin: 5%;
+}
+
+@media (max-width:768px){
+
+    .comments-container .input-container textarea{
+        width: 90%;
+        height: 100px;
+    } 
+}
+
+
+/* LIKES / DISLIKES */
+
+.likes-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 20%;
+    margin-right: 10px;
+}
+
+.likes-container .row{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.likes-container .row img{
+    cursor: pointer;
+}
+
+.likes-container .row span{
+    font-size: 20px;
+}
+
+@media (max-width:768px){
+
+    .likes-container{
+        width: 35%;
+        margin-right: 0;
+    }
+
+    .likes-container .row img{
+        width: 20px;
+    }
 }

@@ -6,11 +6,27 @@ import SearchAutoCom from './search-autoCom/index.jsx';
 export default function VideoApp({url}){
 
     const [videos, setVideos] = useState([]);
-    const [videoIndex, setVideoIndex] = useState(-1);
+    const [videoIndex, setVideoIndex] = useState(()=>{
+        const localValue = localStorage.getItem('vidIndx');
+        if(!localValue) return -1;
+        return JSON.parse(localValue);
+    });
     const [showGrid, setShowGrid] = useState('flex');
-    const [video, setVideo] = useState({});
-    const [user, setUser] = useState('');
-    const [login, setLogin] = useState(false)
+    const [video, setVideo] = useState(()=>{
+        const localValue = localStorage.getItem('current-vid');
+        if(!localValue) return {};
+        return JSON.parse(localValue);
+    });
+    const [user, setUser] = useState(()=>{
+        const localValue = localStorage.getItem('user');
+        if(!localValue) return '';
+        return JSON.parse(localValue); 
+    });
+    const [login, setLogin] = useState(()=>{
+        const localValue = localStorage.getItem('login');
+        if(!localValue) return false;
+        return JSON.parse(localValue);
+    })
     const [showFilteredVid, setShowFilteredVid] = useState(false);
     const [filteredVid, setFilteredVid] = useState([]);
 
@@ -20,6 +36,7 @@ export default function VideoApp({url}){
     async function getVideos(){
         
         try {
+
             setLoading(true);
             const res = await fetch(url);
             const data = await res.json();
@@ -27,8 +44,7 @@ export default function VideoApp({url}){
             if(data && data.length && data.length > 0){
                 setLoading(false);
                 setVideos(data);
-            }
-            
+            } 
         } catch (error) {
             console.log(error)
             setError(error);
@@ -49,6 +65,9 @@ export default function VideoApp({url}){
 
         setVideoIndex(-1);
         setShowGrid('flex');
+        setVideo({});
+        getVideos();
+        localStorage.removeItem('current-vid');
     }
 
     function handleSubmit(){
@@ -74,13 +93,46 @@ export default function VideoApp({url}){
         setShowGrid('flex');
         setFilteredVid([]);
         setShowFilteredVid(false);
+        getVideos();
+        localStorage.removeItem('current-vid');
     }
 
+    function handleLogOut(){
+        setLogin(false);
+        localStorage.removeItem('user');
+        localStorage.removeItem('current-vid');
+        setUser('');
+    }
+
+    // Get videos from the API
     useEffect(()=>{
-        
-        getVideos();
+
+        if(!video.length && videoIndex === -1){
+
+            getVideos();
+        }
 
     }, []);
+
+    // Handle the login
+    useEffect(()=>{
+
+        if(user && user.length > 0){
+
+            localStorage.setItem('user', JSON.stringify(user));
+        }
+
+        localStorage.setItem('login', JSON.stringify(login));
+
+    }, [login, user]);
+
+    // Handle the current video showing
+    useEffect(()=>{
+
+        localStorage.setItem('current-vid', JSON.stringify(video));
+        localStorage.setItem('vidIndx', JSON.stringify(videoIndex));
+
+    }, [video, videoIndex]);
 
 
     if(!login){
@@ -107,7 +159,7 @@ export default function VideoApp({url}){
 
                 <div className="user">
                     <h3>{user}</h3>
-                    <button onClick={()=>setLogin(false)}>logout</button>
+                    <button onClick={handleLogOut}>logout</button>
                 </div>
             </div>
 

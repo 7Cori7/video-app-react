@@ -57,13 +57,13 @@ export default function Comments({videoId, user}){
                     <hr />
                 </div>
                ))
-               : null 
+               : <p>Be the first user to leave a comment!</p> 
             }
         </div>
 
         <div className="input-container">
-            <h3>Make a comment</h3>
-            <textarea name="make-comment" value={newComment} onChange={(e)=>setNewComment(c=>c=e.target.value)} />
+            <h3>Make a comment!</h3>
+            <textarea name="make-comment" value={newComment} onChange={(e)=>setNewComment(c=>c=e.target.value)} placeholder="Write here to leave a comment." />
             <button onClick={makeComment}>Post Comment</button>
         </div>
     </div>

@@ -74,13 +74,17 @@
 
 @media (max-width:768px){
 
+    .serach-ac-container .search-bar{
+        margin: 20px 0;
+    }
+
     .serach-ac-container .search-bar button{
         padding: 1rem;
-        
     }
 
     .serach-ac-container .search-bar input{
         padding: 1rem;
+        width: 65%;
     }
 
     .serach-ac-container .search-bar .dropDown{
