@@ -6,8 +6,8 @@ import { useState } from 'react';
 
 export default function Likes(){
 
-    const [totalLikes, setTotalLikes] = useState(0);
-    const [totalDislikes, setTotalDislikes] = useState(0);
+    const [totalLikes, setTotalLikes] = useState(10);
+    const [totalDislikes, setTotalDislikes] = useState(50);
 
     const [likesCount, setLikesCount] = useState(0);
     const [disLikesCount, setDisLikesCount] = useState(0);
@@ -24,8 +24,9 @@ export default function Likes(){
             setDisLikesCount(0);
             setClickDis(false)
 
-            setTotalLikes(t=> t += 1);
+            setTotalLikes(t=> t + 1);
             setTotalDislikes(t=> t - disLikesCount);
+
         }else{
 
             setClickLike(false);
@@ -45,7 +46,7 @@ export default function Likes(){
             setLikesCount(0);
             setClickLike(false)
 
-            setTotalDislikes(t=> t += 1);
+            setTotalDislikes(t=> t + 1);
             setTotalLikes(t=> t - likesCount);
 
         }else{
@@ -58,6 +59,12 @@ export default function Likes(){
 
     }
 
+
+    /*
+    Para que este componente tenga más funcionalidad se debe connectar a una base de datos que guarde los
+    likes/dislikes por video y user y luego los imprima en pantalla.
+    Pero eso no lo haré en este ejercico jejeje.
+    */
 
     return <div className='likes-container'>
 

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Video from "./video.jsx";
 import '/public/styles.css';
 import SearchAutoCom from './search-autoCom/index.jsx';
+import Suggestions from "./suggestions.jsx";
 
 export default function VideoApp({url}){
 
@@ -202,11 +203,11 @@ export default function VideoApp({url}){
                 videoIndex !== -1 && !showFilteredVid ? <div className="video-container">
 
                     {/* COMPONENTE DE VIDEO */}
-                    <Video video={video} user={user} handleCloseVid={handleCloseVid} />
+                    <Video video={video} user={user} handleCloseVid={handleCloseVid} url={url} />
 
                     {/* COMPONENTE DE LISTA DE VIDEOS SUGERIDOS */}
                     <div className="lista">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Error architecto illum numquam saepe nihil itaque velit quidem, sunt fugit culpa magnam amet sint rem veritatis quas similique. Excepturi, tempora esse!
+                        <Suggestions url={url} openVid={handleVideoId} />
                     </div>
                 </div>
                 : null

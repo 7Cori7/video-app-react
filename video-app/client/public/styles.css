@@ -124,15 +124,25 @@
 .video-container{
     display: flex;
     margin: 5%;
-    gap: 20px;
+    gap: 25px;
 }
 
 .video-container .lista{
-    width: 50%;
+    width: 40%;
     height: 100vh;
-    background-color: aqua;
-    padding: 5%;
 }
+
+.video-container .lista ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.video-container .lista ul li{
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
 
 @media (max-width:768px){
     .video-container{
@@ -143,7 +153,11 @@
         width: 100%;
         padding: 5%;
         position: absolute;
-        bottom: -100%;
+        bottom: -85%;
+    }
+
+    .video-container .lista ul li img{
+        width: 100%;
     }
 }
 

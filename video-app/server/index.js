@@ -22,8 +22,19 @@ app.get('/data/video', (req,res)=>{
         console.log(error)
     }
 
-})
+});
+
+app.post('/data/video/likes', async (req,res)=>{
+
+    //* FOR A DB CONNECTION
+});
+
+
+app.post('/data/video/dislikes', (req,res)=>{
+
+    //* FOR A DB CONNECTION
+});
 
 server.listen(port, ()=>{
     console.log(`server is listening to port ${port}`)
-})
+});
