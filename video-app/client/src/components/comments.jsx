@@ -20,19 +20,7 @@ export default function Comments({videoId, user}){
 
             setCurrComments(c=> c = currCom);
         }
-    },[vidComments]);
-
-    useEffect(()=>{
-
-        if(vidComments.length > 0){
-
-            localStorage.setItem('VidComments', JSON.stringify([...vidComments]));
-
-            const currCom = vidComments.filter(i => i.videoId === videoId);
-
-            setCurrComments(c=> c = currCom);
-        }
-    }, []);
+    });
 
     function makeComment(){
 

@@ -7,50 +7,38 @@ import VidSuggestions from "./vidSuggestions.jsx";
 export default function VideoApp({url}){
 
     const [videos, setVideos] = useState([]);
+
     const [videoIndex, setVideoIndex] = useState(()=>{
         const localValue = localStorage.getItem('vidIndx');
         if(!localValue) return -1;
         return JSON.parse(localValue);
     });
+
     const [showGrid, setShowGrid] = useState('flex');
+    
     const [video, setVideo] = useState(()=>{
         const localValue = localStorage.getItem('current-vid');
         if(!localValue) return {};
         return JSON.parse(localValue);
     });
+
     const [user, setUser] = useState(()=>{
         const localValue = localStorage.getItem('user');
         if(!localValue) return '';
         return JSON.parse(localValue); 
     });
+
     const [login, setLogin] = useState(()=>{
         const localValue = localStorage.getItem('login');
         if(!localValue) return false;
         return JSON.parse(localValue);
-    })
+    });
+
     const [showFilteredVid, setShowFilteredVid] = useState(false);
     const [filteredVid, setFilteredVid] = useState([]);
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-
-    async function getVideos(){
-        
-        try {
-
-            setLoading(true);
-            const res = await fetch(url);
-            const data = await res.json();
-
-            if(data && data.length && data.length > 0){
-                setLoading(false);
-                setVideos(data);
-            } 
-        } catch (error) {
-            console.log(error)
-            setError(error);
-        }
-    }
 
     function handleVideoId(id, index){
 
@@ -59,7 +47,7 @@ export default function VideoApp({url}){
 
         const video = videos.filter(i => i.id === id);
         setVideo(video[0]);
-        setShowFilteredVid(false);
+        setShowFilteredVid(false); 
     }
 
     function handleCloseVid(){
@@ -105,6 +93,24 @@ export default function VideoApp({url}){
         setUser('');
     }
 
+    async function getVideos(){
+        
+        try {
+
+            setLoading(true);
+            const res = await fetch(url);
+            const data = await res.json();
+
+            if(data && data.length && data.length > 0){
+                setLoading(false);
+                setVideos(data);
+            } 
+        } catch (error) {
+            console.log(error)
+            setError(error);
+        }
+    }
+
     // Get videos from the API
     useEffect(()=>{
 
@@ -112,7 +118,6 @@ export default function VideoApp({url}){
 
             getVideos();
         }
-
     }, []);
 
     // Handle the login
@@ -167,7 +172,7 @@ export default function VideoApp({url}){
             {/* SEARCH BAR */}
             <SearchAutoCom url={url} showVid={showVid} />
 
-            { loading && <p>⌛Loading data...Please, wait.</p> }
+            { loading && <p style={{textAlign:'center'}}>⌛Loading data...Please, wait.</p> }
             { error !== null && <p>❌An error has occurred ! {error}</p> }
 
             {/* GRILLA DE VIDEOS */}
@@ -194,7 +199,6 @@ export default function VideoApp({url}){
                             </div>
                         : null
                     }
-
                 </div>
             </div>
 
@@ -204,10 +208,10 @@ export default function VideoApp({url}){
 
                     {/* COMPONENTE DE VIDEO */}
                     <Video video={video} user={user} handleCloseVid={handleCloseVid} url={url} />
-
+                    
                     {/* COMPONENTE DE LISTA DE VIDEOS SUGERIDOS */}
                     <div className="lista">
-                        <VidSuggestions url={url} openVid={handleVideoId} videoId={video.id} />
+                        <VidSuggestions url={url} openVid={handleVideoId} closeVid={handleCloseVid} videoId={video.id} />
                     </div>
                 </div>
                 : null

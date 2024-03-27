@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function VidSuggestions({url, openVid, videoId}){
+export default function VidSuggestions({url, openVid, videoId, closeVid}){
 
     const [sugVids, setSugVids] = useState([]);
     const [showBtn, setShowBtn] = useState('flex');
@@ -42,6 +42,12 @@ export default function VidSuggestions({url, openVid, videoId}){
         }
     }
 
+    function handleSugVid(id, index){
+
+        closeVid();
+        openVid(id, index);
+    }
+
     useEffect(()=>{
 
         getSuggestions();
@@ -55,7 +61,7 @@ export default function VidSuggestions({url, openVid, videoId}){
                 ? sugVids.map((item, index)=>(
 
                     <li key={index}>
-                        <img src={item.thumb} alt={item.title} width={250} onClick={()=>openVid(item.id, index)} />
+                        <img src={item.thumb} alt={item.title} width={250} onClick={()=>handleSugVid(item.id, index)} />
                     </li>
                 ))
                 :null

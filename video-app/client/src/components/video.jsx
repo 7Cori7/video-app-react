@@ -3,7 +3,6 @@ import Likes from "./likes.jsx";
 
 export default function Video({handleCloseVid, video, user}){
 
-
     return <div className="video">
 
         <button className="close-vid" onClick={handleCloseVid}>close video</button>
