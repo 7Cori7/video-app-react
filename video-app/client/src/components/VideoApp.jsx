@@ -4,7 +4,7 @@ import './styles.css';
 import SearchAutoCom from './search-autoCom/index.jsx';
 import VidSuggestions from "./vidSuggestions.jsx";
 
-export default function VideoApp({url}){
+export default function VideoApp({url, data}){
 
     const [videos, setVideos] = useState([]);
 
@@ -93,25 +93,27 @@ export default function VideoApp({url}){
         setUser('');
     }
 
-    async function getVideos(){
+    function getVideos(){
         
-        try {
+        // try {
 
-            setLoading(true);
-            const res = await fetch(url);
-            const data = await res.json();
+        //     setLoading(true);
+        //     const res = await fetch(url);
+        //     const data = await res.json();
 
-            if(data && data.length && data.length > 0){
-                setLoading(false);
-                setVideos(data);
-            } 
-        } catch (error) {
-            console.log(error)
-            setError(error);
-        }
+        //     if(data && data.length && data.length > 0){
+        //         setLoading(false);
+        //         setVideos(data);
+        //     } 
+        // } catch (error) {
+        //     console.log(error)
+        //     setError(error);
+        // }
+
+        setVideos(data);
     }
 
-    // Get videos from the API
+    // Get videos from the API or JSON
     useEffect(()=>{
 
         if(!video.length && videoIndex === -1){
@@ -170,7 +172,7 @@ export default function VideoApp({url}){
             </div>
 
             {/* SEARCH BAR */}
-            <SearchAutoCom url={url} showVid={showVid} />
+            <SearchAutoCom url={url} data={data} showVid={showVid} />
 
             { loading && <p style={{textAlign:'center'}}>⌛Loading data...Please, wait.</p> }
             { error !== null && <p>❌An error has occurred ! {error}</p> }

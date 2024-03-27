@@ -3,7 +3,7 @@ import Suggestions from "./suggestions";
 import './searchAuto.css';
 
 
-export default function SearchAutoCom({url, showVid}){
+export default function SearchAutoCom({url, data, showVid}){
 
     const [loading, setLoading] = useState(false);
     const [vid, setVid] = useState([]);
@@ -51,22 +51,25 @@ export default function SearchAutoCom({url, showVid}){
 
     async function fetchvid(){
 
-        try {
-            setLoading(true);
-            const res = await fetch(url);
-            const data = await res.json();
+        // try {
+        //     setLoading(true);
+        //     const res = await fetch(url);
+        //     const data = await res.json();
 
-            if(data && data.length){
-                setLoading(false);
-                const vidTitles = data.map(i=> i.title);
-                setVid(vidTitles);  
-            }
+        //     if(data && data.length){
+        //         setLoading(false);
+        //         const vidTitles = data.map(i=> i.title);
+        //         setVid(vidTitles);  
+        //     }
 
-        } catch (error) {
-            console.log(error)
-            setLoading(false);
-            setError(error);
-        }
+        // } catch (error) {
+        //     console.log(error)
+        //     setLoading(false);
+        //     setError(error);
+        // }
+
+        const vidTitles = data.map(i=> i.title);
+        setVid(vidTitles);  
     }
 
     useEffect(()=>{
