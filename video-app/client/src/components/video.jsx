@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import Comments from "./comments.jsx";
 import Likes from "./likes.jsx";
 

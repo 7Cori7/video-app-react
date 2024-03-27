@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import Video from "./video.jsx";
-import '/public/styles.css';
+import './styles.css';
 import SearchAutoCom from './search-autoCom/index.jsx';
-import Suggestions from "./suggestions.jsx";
+import VidSuggestions from "./vidSuggestions.jsx";
 
 export default function VideoApp({url}){
 
@@ -207,7 +207,7 @@ export default function VideoApp({url}){
 
                     {/* COMPONENTE DE LISTA DE VIDEOS SUGERIDOS */}
                     <div className="lista">
-                        <Suggestions url={url} openVid={handleVideoId} />
+                        <VidSuggestions url={url} openVid={handleVideoId} videoId={video.id} />
                     </div>
                 </div>
                 : null

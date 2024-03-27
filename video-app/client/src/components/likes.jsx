@@ -1,7 +1,7 @@
-import like1 from '/public/like1.svg';
-import like2 from '/public/like2.svg';
-import dislike1 from '/public/dislike1.svg';
-import dislike2 from '/public/dislike2.svg';
+import like1 from './assets/like1.svg';
+import like2 from './assets/like2.svg';
+import dislike1 from './assets/dislike1.svg';
+import dislike2 from './assets/dislike2.svg';
 import { useState } from 'react';
 
 export default function Likes(){
@@ -20,9 +20,11 @@ export default function Likes(){
         if(!clickLike){
 
             setClickLike(true);
+            setClickDis(false);
+
             setLikesCount(l=> l = 1);
             setDisLikesCount(0);
-            setClickDis(false)
+            
 
             setTotalLikes(t=> t + 1);
             setTotalDislikes(t=> t - disLikesCount);
@@ -30,6 +32,7 @@ export default function Likes(){
         }else{
 
             setClickLike(false);
+
             setLikesCount(0);
 
             setTotalLikes(t=> t - 1);
@@ -42,9 +45,11 @@ export default function Likes(){
         if(!clickDis){
 
             setClickDis(true);
+            setClickLike(false);
+
             setDisLikesCount(d=> d = 1);
             setLikesCount(0);
-            setClickLike(false)
+            
 
             setTotalDislikes(t=> t + 1);
             setTotalLikes(t=> t - likesCount);
@@ -52,9 +57,10 @@ export default function Likes(){
         }else{
 
             setClickDis(false);
+            
             setDisLikesCount(0);
 
-            setTotalDislikes(t=> t - disLikesCount);
+            setTotalDislikes(t=> t - 1);
         }
 
     }

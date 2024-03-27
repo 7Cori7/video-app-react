@@ -4,3 +4,13 @@ body{
   margin: 0;
   font-family: sans-serif;
 }
+
+/* FOOTER */
+.footer{
+  color: purple;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 10%;
+  margin-bottom: 2%;
+}
