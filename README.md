@@ -10,7 +10,7 @@ The videos are stored on a JSON that you can fetch through a back-end route.
 - You pick the video you wanna see by clicking on it's thumbnail img. ✔️
 - Your chosen video will render on screen. ✔️
 - You can leave comments and see other peoples comments. ✔️
-- You can give likes or dislikes ⌛...still working on that part
+- You can give likes or dislikes (only on a superficial level, more deep functionality requires connection to a DB). ✔️
 - You can also filter any video from the data base with the search bar. ✔️
 
-Is not deployed yet because is not finished atm 😗
+😗
