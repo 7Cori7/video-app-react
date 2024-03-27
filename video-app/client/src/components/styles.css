@@ -48,6 +48,34 @@
     background-color: mediumseagreen;
     transform: scale(105%);
 }
+
+@media (max-width:768px){
+    .login-screen{
+        margin: 0;
+        height: 100vh;
+    }
+
+    .login-screen h2{
+        font-size: 2em;
+    }
+
+    .login-screen form{
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .login-screen form input{
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .login-screen form button{
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
 /*-----------------------------------------------*/
 
 /* CONTENT BODY - HEADER */
@@ -102,6 +130,15 @@
     align-items: center;
     padding: 5%;
     cursor: pointer;
+}
+
+@media (max-width:1200px){
+
+    .videos-grid{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2em;
+    } 
 }
 
 @media (max-width:768px){
