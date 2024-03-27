@@ -1,28 +1,11 @@
 import { useEffect, useState } from "react";
 
-export default function VidSuggestions({url, openVid, videoId, closeVid}){
+export default function VidSuggestions({videos, openVid, videoId, closeVid}){
 
     const [sugVids, setSugVids] = useState([]);
     const [showBtn, setShowBtn] = useState('flex');
 
     let currentItem = 3;
-
-    async function getSuggestions(){
-        
-        try {
-
-            const res = await fetch(url);
-            const data = await res.json();
-
-            if(data && data.length && data.length > 0){
-                // filtrar todos los videos que no son el video actual.
-                const filterOut = data.filter(i=> i.id !== videoId);
-                setSugVids(filterOut);
-            } 
-        } catch (error) {
-            console.log(error)
-        }
-    }
 
     function handleLoadMore(){
 
@@ -50,7 +33,10 @@ export default function VidSuggestions({url, openVid, videoId, closeVid}){
 
     useEffect(()=>{
 
-        getSuggestions();
+        if(videos && videos.length > 0){
+            const filterOut = videos.filter(i=> i.id !== videoId);
+            setSugVids(filterOut);
+        }
     }, []);
 
     return <>

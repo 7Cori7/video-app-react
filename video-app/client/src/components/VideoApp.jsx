@@ -23,13 +23,13 @@ export default function VideoApp({url}){
     });
 
     const [user, setUser] = useState(()=>{
-        const localValue = localStorage.getItem('user');
+        const localValue = sessionStorage.getItem('user');
         if(!localValue) return '';
         return JSON.parse(localValue); 
     });
 
     const [login, setLogin] = useState(()=>{
-        const localValue = localStorage.getItem('login');
+        const localValue = sessionStorage.getItem('login');
         if(!localValue) return false;
         return JSON.parse(localValue);
     });
@@ -88,7 +88,7 @@ export default function VideoApp({url}){
 
     function handleLogOut(){
         setLogin(false);
-        localStorage.removeItem('user');
+        sessionStorage.removeItem('user');
         localStorage.removeItem('current-vid');
         setUser('');
     }
@@ -125,10 +125,10 @@ export default function VideoApp({url}){
 
         if(user && user.length > 0){
 
-            localStorage.setItem('user', JSON.stringify(user));
+            sessionStorage.setItem('user', JSON.stringify(user));
         }
 
-        localStorage.setItem('login', JSON.stringify(login));
+        sessionStorage.setItem('login', JSON.stringify(login));
 
     }, [login, user]);
 
@@ -211,7 +211,7 @@ export default function VideoApp({url}){
                     
                     {/* COMPONENTE DE LISTA DE VIDEOS SUGERIDOS */}
                     <div className="lista">
-                        <VidSuggestions url={url} openVid={handleVideoId} closeVid={handleCloseVid} videoId={video.id} />
+                        <VidSuggestions videos={videos} openVid={handleVideoId} closeVid={handleCloseVid} videoId={video.id} />
                     </div>
                 </div>
                 : null
