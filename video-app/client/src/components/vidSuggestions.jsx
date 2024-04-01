@@ -39,6 +39,8 @@ export default function VidSuggestions({videos, openVid, videoId, closeVid}){
         }
     }, []);
 
+    console.log(sugVids)
+
     return <>
 
         <ul>  
