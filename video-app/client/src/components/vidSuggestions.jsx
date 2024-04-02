@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function VidSuggestions({videos, openVid, videoId, closeVid}){
+export default function VidSuggestions({data, openVid, videoId, closeVid}){
 
     const [sugVids, setSugVids] = useState([]);
     const [showBtn, setShowBtn] = useState('flex');
@@ -33,10 +33,9 @@ export default function VidSuggestions({videos, openVid, videoId, closeVid}){
 
     useEffect(()=>{
 
-        if(videos && videos.length > 0){
-            const filterOut = videos.filter(i=> i.id !== videoId);
-            setSugVids(filterOut);
-        }
+        const filterOut = data.filter(i=> i.id !== videoId);
+        setSugVids(filterOut);
+    
     }, []);
 
     console.log(sugVids)

@@ -93,7 +93,7 @@ export default function VideoApp({url, data}){
         setUser('');
     }
 
-    function getVideos(){
+    async function getVideos(){
         
         // try {
 
@@ -213,7 +213,7 @@ export default function VideoApp({url, data}){
                     
                     {/* COMPONENTE DE LISTA DE VIDEOS SUGERIDOS */}
                     <div className="lista">
-                        <VidSuggestions videos={videos} openVid={handleVideoId} closeVid={handleCloseVid} videoId={video.id} />
+                        <VidSuggestions data={data} openVid={handleVideoId} closeVid={handleCloseVid} videoId={video.id} />
                     </div>
                 </div>
                 : null
