@@ -4,7 +4,7 @@ import './styles.css';
 import SearchAutoCom from './search-autoCom/index.jsx';
 import VidSuggestions from "./vidSuggestions.jsx";
 
-export default function VideoApp({url, data}){
+export default function VideoApp({data, loading, error}){
 
     const [videos, setVideos] = useState([]);
 
@@ -37,8 +37,6 @@ export default function VideoApp({url, data}){
     const [showFilteredVid, setShowFilteredVid] = useState(false);
     const [filteredVid, setFilteredVid] = useState([]);
 
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
 
     function handleVideoId(id, index){
 
@@ -110,7 +108,7 @@ export default function VideoApp({url, data}){
         //     setError(error);
         // }
 
-        setVideos(data);
+        //setVideos(data);
     }
 
     // Get videos from the API or JSON
@@ -118,9 +116,10 @@ export default function VideoApp({url, data}){
 
         if(!video.length && videoIndex === -1){
 
-            getVideos();
+            setVideos(data);
         }
-    }, []);
+
+    }, [data]);
 
     // Handle the login
     useEffect(()=>{
@@ -141,7 +140,6 @@ export default function VideoApp({url, data}){
         localStorage.setItem('vidIndx', JSON.stringify(videoIndex));
 
     }, [video, videoIndex]);
-
 
     if(!login){
 
@@ -172,7 +170,7 @@ export default function VideoApp({url, data}){
             </div>
 
             {/* SEARCH BAR */}
-            <SearchAutoCom url={url} data={data} showVid={showVid} />
+            <SearchAutoCom data={data} showVid={showVid} />
 
             { loading && <p style={{textAlign:'center'}}>⌛Loading data...Please, wait.</p> }
             { error !== null && <p>❌An error has occurred ! {error}</p> }
@@ -209,7 +207,7 @@ export default function VideoApp({url, data}){
                 videoIndex !== -1 && !showFilteredVid ? <div className="video-container">
 
                     {/* COMPONENTE DE VIDEO */}
-                    <Video video={video} user={user} handleCloseVid={handleCloseVid} url={url} />
+                    <Video video={video} user={user} handleCloseVid={handleCloseVid} />
                     
                     {/* COMPONENTE DE LISTA DE VIDEOS SUGERIDOS */}
                     <div className="lista">
