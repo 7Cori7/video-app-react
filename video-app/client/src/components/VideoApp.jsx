@@ -91,26 +91,6 @@ export default function VideoApp({data, loading, error}){
         setUser('');
     }
 
-    async function getVideos(){
-        
-        // try {
-
-        //     setLoading(true);
-        //     const res = await fetch(url);
-        //     const data = await res.json();
-
-        //     if(data && data.length && data.length > 0){
-        //         setLoading(false);
-        //         setVideos(data);
-        //     } 
-        // } catch (error) {
-        //     console.log(error)
-        //     setError(error);
-        // }
-
-        //setVideos(data);
-    }
-
     // Get videos from the API or JSON
     useEffect(()=>{
 
