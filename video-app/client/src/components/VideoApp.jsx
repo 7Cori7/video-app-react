@@ -53,7 +53,7 @@ export default function VideoApp({data, loading, error}){
         setVideoIndex(-1);
         setShowGrid('flex');
         setVideo({});
-        getVideos();
+        ////getVideos();
         localStorage.removeItem('current-vid');
     }
 
@@ -80,7 +80,7 @@ export default function VideoApp({data, loading, error}){
         setShowGrid('flex');
         setFilteredVid([]);
         setShowFilteredVid(false);
-        getVideos();
+        ////getVideos();
         localStorage.removeItem('current-vid');
     }
 
