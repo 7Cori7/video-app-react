@@ -3,6 +3,7 @@ import Video from "./video.jsx";
 import './styles.css';
 import SearchAutoCom from './search-autoCom/index.jsx';
 import VidSuggestions from "./vidSuggestions.jsx";
+import Header from "./header.jsx";
 
 export default function VideoApp({data, loading, error}){
 
@@ -139,15 +140,7 @@ export default function VideoApp({data, loading, error}){
         return <div className="content-body">
 
             {/* HEADER */}
-            <div className="header">
-
-                <h2 onClick={backToMain} style={{cursor:'pointer'}}>Video App</h2>
-
-                <div className="user">
-                    <h3>{user}</h3>
-                    <button onClick={handleLogOut}>logout</button>
-                </div>
-            </div>
+            <Header user={user} backToMain={backToMain} handleLogOut={handleLogOut} />
 
             {/* SEARCH BAR */}
             <SearchAutoCom data={data} showVid={showVid} />

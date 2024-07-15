@@ -1,43 +1,29 @@
-import { useEffect, useState } from "react";
-import VideoApp from "./components/VideoApp.jsx";
+import { Routes, Route } from 'react-router-dom';
 import Footer from "./components/footer.jsx";
-import getData from "./data.js";
+import Login from './pages/login';
+import Home from './pages/home';
+import Video from './pages/curr-video';
+import NotFound from './pages/not-found';
 
 function App() {
-  
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [data, setData] = useState([]);
 
-  async function fetchVideos(){
+  return <div className='App'>
 
-    try{
+    <div className="content-body">
 
-      setLoading(true);
-      const response = await getData();
+      <Routes>
 
-      if(response && response.length > 0){
-        setLoading(false);
-        setData(response);
-      }
-      
-    }catch(error){
-      console.log(error)
-      setLoading(false);
-      setError(error);
-      throw new Error(error);
-    }
-  }
+        <Route path='/login' element={ <Login /> } />
+        <Route path='/' element={ <Home /> } />
+        <Route path='/video/:id' element={ <Video /> }/>
+        <Route path='*' element={ <NotFound /> }/>
 
-  useEffect(()=>{
+      </Routes>
 
-    fetchVideos();
-  }, []);
+      <Footer />
 
-  return <>
-    <VideoApp data={data} loading={loading} error={error} />
-    <Footer />
-  </>
+    </div>
+  </div>
 }
 
 export default App;

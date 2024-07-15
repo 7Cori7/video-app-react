@@ -1,0 +1,12 @@
+1. Context
+- Get data from API
+- Set / get videos list
+- Set / get likes list
+- Set / get comments list
+- Set / get users list
+- Set / get logged user. Here I can use the sessionStorage
+- Handle search params
+
+2.Showing a video:
+- When you click on a video thumbnail, it redirects to the route for /curr-video/:video-id
+- When you close the video, it simply redirects to the '/' route
