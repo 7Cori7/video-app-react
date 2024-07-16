@@ -63,9 +63,9 @@ export default function VideoPage(){
 
             {/* COMPONENTE DE VIDEO */}
             {
-                video && video !== null
-                ? <Video video={video} handleCloseVid={handleCloseVid} user={user} />
-                : null
+                // video && video !== null
+                // ? <Video video={video} handleCloseVid={handleCloseVid} user={user} />
+                // : null
             }
                     
             {/* COMPONENTE DE LISTA DE VIDEOS SUGERIDOS */}
