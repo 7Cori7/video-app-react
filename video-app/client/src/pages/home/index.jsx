@@ -89,7 +89,7 @@ export default function Home(){
                 {
                     showFilteredVid && filteredVid
                     ?  <div className="video-card" style={{display:'flex'}}>
-                            <Link to={`/video/${filteredVid.id}`}>
+                            <Link to={`/video/${filteredVid.id}`} onClick={handleReload}>
                                 <img src={filteredVid.thumb} alt={filteredVid.title} width={400} />
                                 <h3>{filteredVid.title}</h3>
                             </Link>
