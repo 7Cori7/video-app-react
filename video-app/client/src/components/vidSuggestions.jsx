@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-export default function VidSuggestions({data, openVid, videoId, closeVid}){
+export default function VidSuggestions({data, params}){
 
     const [sugVids, setSugVids] = useState([]);
     const [showBtn, setShowBtn] = useState('flex');
@@ -25,28 +26,23 @@ export default function VidSuggestions({data, openVid, videoId, closeVid}){
         }
     }
 
-    function handleSugVid(id, index){
-
-        closeVid();
-        openVid(id, index);
-    }
-
     useEffect(()=>{
 
-        const filterOut = data.filter(i=> i.id !== videoId);
-        setSugVids(filterOut);
+        setSugVids(data);
     
-    }, []);
+    }, [params]);
 
     return <>
 
         <ul>  
             {
-                sugVids && sugVids.length && sugVids.length > 0
+                sugVids && sugVids?.length && sugVids?.length > 0
                 ? sugVids.map((item, index)=>(
 
                     <li key={index}>
-                        <img src={item.thumb} alt={item.title} width={250} onClick={()=>handleSugVid(item.id, index)} />
+                        <Link to={`/video/${item?.id}`}>
+                            <img src={item?.thumb} alt={item?.title} width={250} />
+                        </Link>
                     </li>
                 ))
                 :null

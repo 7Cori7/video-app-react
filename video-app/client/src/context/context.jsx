@@ -10,11 +10,8 @@ export default function GlobalState({ children }){
 
     const [videoList, setVideoList] = useState([]);
 
-    const [likes, setLikes] = useState([]);
-    const [comments, setComments] = useState([]);
-
-    // To set the current video
-    const [video, setVideo] = useState(null);
+    const [showFilteredVid, setShowFilteredVid] = useState(false);
+    const [filteredVid, setFilteredVid] = useState(null);
 
     // Set logged user
     const [user, setUser] = useState(()=>{
@@ -27,6 +24,11 @@ export default function GlobalState({ children }){
         if(!localValue) return false;
         return JSON.parse(localValue);
     });
+
+    function backToMain(){
+        setShowFilteredVid(false);
+        setFilteredVid(null);
+    }
 
     // Get the videos from API
     async function fetchVideos(){
@@ -49,20 +51,10 @@ export default function GlobalState({ children }){
         }
     }
 
-    // For the search component
-    function showVid(title){
-
-        setShowFilteredVid(true);
-        const showVid = videoList.filter(i=> i.title === title);
-        setFilteredVid(showVid[0]);
-        setShowGrid('flex');
-    }
-
     useEffect(()=>{
 
         fetchVideos();
     }, []);
-
 
     return <GlobalContext.Provider value={
         {
@@ -72,17 +64,15 @@ export default function GlobalState({ children }){
             setError,
             videoList,
             setVideoList,
-            likes,
-            setLikes,
-            comments,
-            setComments,
-            video,
-            setVideo,
             user,
             setUser,
             login,
             setLogin,
-            showVid
+            backToMain,
+            showFilteredVid,
+            setShowFilteredVid,
+            filteredVid,
+            setFilteredVid
         }
     }>
 

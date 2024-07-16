@@ -162,7 +162,7 @@ function getData(){
 
     return new Promise((resolve, reject)=>{
 
-        if(data) setTimeout(resolve(data), 2000);
+        if(data) setTimeout(resolve(data), 500);
         else reject('Some error has occured, Please try again');
     });
 }

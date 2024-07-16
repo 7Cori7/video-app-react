@@ -2,12 +2,12 @@ import { Routes, Route } from 'react-router-dom';
 import Footer from "./components/footer.jsx";
 import Login from './pages/login';
 import Home from './pages/home';
-import Video from './pages/curr-video';
+import VideoPage from './pages/curr-video';
 import NotFound from './pages/not-found';
 
 function App() {
 
-  return <div className='App'>
+  return <>
 
     <div className="content-body">
 
@@ -15,15 +15,15 @@ function App() {
 
         <Route path='/login' element={ <Login /> } />
         <Route path='/' element={ <Home /> } />
-        <Route path='/video/:id' element={ <Video /> }/>
+        <Route path='/video/:id' element={ <VideoPage /> }/>
         <Route path='*' element={ <NotFound /> }/>
 
       </Routes>
 
-      <Footer />
-
     </div>
-  </div>
+    
+    <Footer />
+  </>
 }
 
 export default App;

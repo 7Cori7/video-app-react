@@ -20,7 +20,7 @@ export default function Comments({videoId, user}){
 
             setCurrComments(c=> c = currCom);
         }
-    });
+    }, []);
 
     function makeComment(){
 

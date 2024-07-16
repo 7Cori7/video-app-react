@@ -52,7 +52,7 @@ export default function SearchAutoCom({data, showVid}){
         const vidTitles = data.map(i=> i.title);
         setVid(vidTitles);  
 
-    }, []);
+    }, [data]);
 
     return <div className="serach-ac-container">
 

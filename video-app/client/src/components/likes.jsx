@@ -6,8 +6,8 @@ import { useState } from 'react';
 
 export default function Likes(){
 
-    const [totalLikes, setTotalLikes] = useState(10);
-    const [totalDislikes, setTotalDislikes] = useState(50);
+    const [totalLikes, setTotalLikes] = useState(0);
+    const [totalDislikes, setTotalDislikes] = useState(0);
 
     const [likesCount, setLikesCount] = useState(0);
     const [disLikesCount, setDisLikesCount] = useState(0);

@@ -124,13 +124,10 @@
     gap: 2em;
 }
 
-.videos-grid .video-card{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 5%;
-    cursor: pointer;
+.videos-grid .video-card a{
+    text-align: center;
+    color: purple;
+    text-decoration: none;
 }
 
 @media (max-width:1200px){
