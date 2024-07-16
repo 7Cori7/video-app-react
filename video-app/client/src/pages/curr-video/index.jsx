@@ -9,20 +9,20 @@ import Header from "../../components/header";
 export default function VideoPage(){
 
     const {id} = useParams();
+    const videoId = Number(id);
 
-    const {videoList, user, backToMain, login} = useContext(GlobalContext);
-
-    const [video, setVideo] = useState(null);
+    const {videoList, user, backToMain, login, video, setVideo } = useContext(GlobalContext);
 
     async function filterVideo(){
 
-        const vid = videoList.find(i => i.id === Number(id));
+        const vid = videoList.find(i => i.id === videoId);
         setVideo(vid);
     };
 
     // Close video
     function handleCloseVid(){
-        
+
+        localStorage.removeItem('current-video');
         navigate('/');
     };
 
@@ -30,13 +30,30 @@ export default function VideoPage(){
 
     if(!login){
         navigate('/login');
-    }
+    };
 
     useEffect(()=>{
 
         filterVideo();
         window.scrollTo(0, 0);
     }, [id]);
+
+    useEffect(()=>{
+
+        if(video && video !== null){
+
+            return localStorage.setItem('current-video', JSON.stringify(video));
+        }
+    
+        const localValue = localStorage.getItem('current-video');
+
+        if(localValue !== null){
+            setVideo(JSON.parse(localValue));
+        }
+
+    }, [video]);
+
+    console.log(id)
 
     return <>
 
@@ -46,7 +63,7 @@ export default function VideoPage(){
 
             {/* COMPONENTE DE VIDEO */}
             {
-                video !== null
+                video && video !== null
                 ? <Video video={video} handleCloseVid={handleCloseVid} user={user} />
                 : null
             }
@@ -55,7 +72,7 @@ export default function VideoPage(){
             {
                 videoList && videoList.length > 0
                 ? <div className="lista">
-                        <VidSuggestions data={videoList.filter(i=> i.id !== Number(id))} closeVid={handleCloseVid} params={id} />
+                        <VidSuggestions data={videoList.filter(i=> i.id !== videoId)} closeVid={handleCloseVid} params={id} />
                     </div>
                 : null
             }

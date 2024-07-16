@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function VidSuggestions({data, params}){
 
     const [sugVids, setSugVids] = useState([]);
     const [showBtn, setShowBtn] = useState('flex');
+
+    const navigate = useNavigate();
 
     let currentItem = 3;
 
@@ -26,11 +28,21 @@ export default function VidSuggestions({data, params}){
         }
     }
 
+    function handleReload(){
+        
+        // Reload page
+        setTimeout(()=>{
+            navigate(0);
+        },500)
+    }
+
     useEffect(()=>{
 
         setSugVids(data);
     
     }, [params]);
+
+    console.log(params, sugVids)
 
     return <>
 
@@ -40,7 +52,7 @@ export default function VidSuggestions({data, params}){
                 ? sugVids.map((item, index)=>(
 
                     <li key={index}>
-                        <Link to={`/video/${item?.id}`}>
+                        <Link to={`/video/${item?.id}`} onClick={handleReload}>
                             <img src={item?.thumb} alt={item?.title} width={250} />
                         </Link>
                     </li>

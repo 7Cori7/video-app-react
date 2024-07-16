@@ -203,6 +203,7 @@
     .video-container{
         display: flex;
         flex-direction: column;
+        margin: 15% 5%;
     }
     
     .video-container .lista{
@@ -230,7 +231,7 @@
     cursor: pointer;
     background: none;
     border: none;
-    color: purple;
+    color: #800080;
     font-weight: bold;
     font-size: 1rem;
     text-transform: uppercase;
@@ -262,7 +263,7 @@
     font-size: 30px;
 }
 
-@media (max-width:768px){
+@media (max-width:850px){
 
     .video-container .video .video-title{
         flex-direction: column;
@@ -273,6 +274,30 @@
         font-size: 25px;
         margin: 20px 0;
     }
+
+    .video-container .video p{
+        text-align: justify;
+    }
+}
+
+
+/* ----- CONTENT BODY - NOT FOUND PAGE ----- */
+.not-found-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 60dvh;
+}
+
+@media (max-width:768px){
+
+    .not-found-page{
+        min-height: 80dvh;
+        margin: 0 4%;
+        text-align: center;
+    }
+
 }
 
 

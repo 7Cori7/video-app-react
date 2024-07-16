@@ -30,6 +30,14 @@ export default function Home(){
         setFilteredVid(showVid[0]);
     }
 
+    function handleReload(){
+        
+        // Reload page
+        setTimeout(()=>{
+            navigate(0);
+        },500)
+    }
+
     // Handle the login
     useEffect(()=>{
 
@@ -68,9 +76,9 @@ export default function Home(){
 
                         <div key={index} className="video-card" style={{display:'flex'}}>
 
-                            <Link to={`/video/${video.id}`}>
-                                <img src={video.thumb} alt={video.title} width={400} />
-                                <h3>{video.title}</h3>
+                            <Link to={`/video/${video?.id}`} onClick={handleReload}>
+                                <img src={video?.thumb} alt={video?.title} width={400} />
+                                <h3>{video?.title}</h3>
                             </Link>
 
                         </div>

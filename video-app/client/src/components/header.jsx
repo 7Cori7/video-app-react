@@ -9,7 +9,7 @@ export default function Header({user, backToMain}){
 
     function handleLogOut(){
         sessionStorage.removeItem('user');
-        localStorage.removeItem('current-vid');
+        localStorage.removeItem('current-video');
         setShowFilteredVid(false);
         setFilteredVid(null);
         setLogin(false);

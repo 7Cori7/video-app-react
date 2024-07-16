@@ -10,6 +10,13 @@ export default function GlobalState({ children }){
 
     const [videoList, setVideoList] = useState([]);
 
+    // For the current video
+    const [video, setVideo] = useState(()=>{
+        const localValue = localStorage.getItem('current-video');
+        if(!localValue) return null;
+        return JSON.parse(localValue); 
+    });
+    
     const [showFilteredVid, setShowFilteredVid] = useState(false);
     const [filteredVid, setFilteredVid] = useState(null);
 
@@ -25,7 +32,10 @@ export default function GlobalState({ children }){
         return JSON.parse(localValue);
     });
 
+    // Back to homepage
     function backToMain(){
+
+        localStorage.removeItem('current-video');
         setShowFilteredVid(false);
         setFilteredVid(null);
     }
@@ -72,7 +82,9 @@ export default function GlobalState({ children }){
             showFilteredVid,
             setShowFilteredVid,
             filteredVid,
-            setFilteredVid
+            setFilteredVid,
+            video,
+            setVideo
         }
     }>
 
