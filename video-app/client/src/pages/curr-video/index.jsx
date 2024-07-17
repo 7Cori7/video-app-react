@@ -11,12 +11,16 @@ export default function VideoPage(){
     const {id} = useParams();
     const videoId = Number(id);
 
-    const {videoList, user, backToMain, login, video, setVideo } = useContext(GlobalContext);
+    const {videoList, user, backToMain, login, video, setVideo, loading, setLoading} = useContext(GlobalContext);
 
     async function filterVideo(){
 
+        setLoading(true);
         const vid = videoList.find(i => i.id === videoId);
-        setVideo(vid);
+        if(vid){
+            setLoading(false);
+            setVideo(vid);
+        }
     };
 
     // Close video
@@ -59,6 +63,9 @@ export default function VideoPage(){
 
         {/* HEADER */}
         <Header user={user} backToMain={backToMain} />
+
+        { loading && <p style={{textAlign:'center'}}>⌛Loading data...Please, wait.</p> }
+
         <div className="video-container">
 
             {/* COMPONENTE DE VIDEO */}

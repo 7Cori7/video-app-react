@@ -1,6 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { GlobalContext } from "../context/context";
 
 export default function Comments({videoId, user}){
+
+    const {loading, setLoading} = useContext(GlobalContext);
 
     const [vidComments, setVidComments] = useState(()=>{
         const localValue = localStorage.getItem('VidComments');
@@ -24,11 +27,15 @@ export default function Comments({videoId, user}){
 
     function makeComment(){
 
+        setLoading(true);
+
         if(!user || !newComment){
 
             alert('to post a comment you must fill all input fields');
+            setLoading(false);
         }else{
 
+            setLoading(false);
             const obj = {
                 videoId,
                 id: crypto.randomUUID(2),
@@ -41,6 +48,8 @@ export default function Comments({videoId, user}){
     }
 
     return <div className="comments-container">
+
+        { loading && <p style={{textAlign:'center'}}>⌛Loading data...Please, wait.</p> }
 
         {
             currComments && currComments.length && currComments.length > 0

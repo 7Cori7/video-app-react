@@ -26,8 +26,8 @@ export default function Home(){
     function showVid(title){
 
         setShowFilteredVid(true);
-        const showVid = videoList.filter(i=> i.title === title);
-        setFilteredVid(showVid[0]);
+        const showVid = videoList.find(i=> i.title === title);
+        setFilteredVid(showVid);
     }
 
     function handleReload(){
